@@ -2,6 +2,7 @@
 
 export("%>%")
 export(bigcat)
+export(coefplot_wide)
 export(ggiplot)
 export(ggplot)
 export(theme_bergr)
