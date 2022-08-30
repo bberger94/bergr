@@ -4,7 +4,7 @@
 \alias{coefplot_wide}
 \title{Custom coefficient plot for many fixest models}
 \usage{
-coefplot_wide(models, treat_var, var_labels = NULL)
+coefplot_wide(models, treat_var, var_labels = NULL, report_pct = FALSE)
 }
 \arguments{
 \item{models}{one or more fixest models}
@@ -14,6 +14,9 @@ coefplot_wide(models, treat_var, var_labels = NULL)
 
 \item{var_labels}{a named vector of dependent variables, one for each model.
 The dependent variable is labeled according to its label.}
+
+\item{report_pct}{whether to report percent changes for coefficients. Only use for
+non-linear models. Default is FALSE.}
 }
 \description{
 Custom coefficient plot for many fixest models

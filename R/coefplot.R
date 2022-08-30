@@ -5,12 +5,15 @@
 #' `coefplot_wide()` returns the coefficient on this variable
 #' @param var_labels a named vector of dependent variables, one for each model. 
 #' The dependent variable is labeled according to its label.
+#' @param report_pct whether to report percent changes for coefficients. Only use for
+#' non-linear models. Default is FALSE.
 #' 
 #' @export
 #' 
 coefplot_wide <- function(models,
                           treat_var,
-                          var_labels = NULL
+                          var_labels = NULL,
+                          report_pct = FALSE
                           ){
   
   
@@ -38,22 +41,30 @@ coefplot_wide <- function(models,
   formatted_df  <- 
     estimate_df %>% 
     dplyr::left_join(var_label_xwalk, by = c("depvar")) %>%
-    dplyr::mutate(formatted_estimate = paste0(round(estimate, 3),
-                                             " (", round(std.error, 3), ")"),
+    dplyr::mutate(
+                  # Add plus sign if positive
                   sign = ifelse(estimate > 0, "+", ""),
                   
+                  # Calculate exponentiated coefficients for percent changes
+                  across(c(estimate, conf.low, conf.high), ~ 100 * (exp(.) - 1),
+                         .names = "pct_{.col}"),
                   
-                  # across(c(estimate, conf.low, conf.high), ~ 100 * (exp(.) - 1),
-                  #        .names = "pct_{.col}"),
-                  # formatted_estimate = str_c(sign,
-                  #                       round(pct_estimate, 1), "% [",
-                  #                       round(pct_conf.low, 1), "%, ",
-                  #                       round(pct_conf.high, 1), "%]"),
-                  
+                  # Obtain formatted estimate
+                  report_pct = report_pct,
+                  formatted_estimate = ifelse(report_pct,
+                                              paste0(sign,
+                                                     round(pct_estimate, 1), "% [",
+                                                     round(pct_conf.low, 1), "%, ",
+                                                     round(pct_conf.high, 1), "%]"),
+                                              paste0(round(estimate, 3),
+                                                     " (", round(std.error, 3), ")")),
+                                              
+                  # Label variable
                   var_label = forcats::fct_rev(
                     forcats::fct_inorder(paste0(label, "\n", formatted_estimate)))
                   )
-
+  
+  # Plot
   ggplot(formatted_df, ggplot2::aes(x = estimate, y = var_label, 
                parse = TRUE)) +
     ggplot2::geom_point() +
