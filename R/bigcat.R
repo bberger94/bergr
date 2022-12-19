@@ -9,5 +9,5 @@
 bigcat <- function(x){
   nc <- nchar(x)
   stars <- rep("*", nc + 3)
-  cat(stars, "\n", x, "\n", stars, sep = "")
+  cat(stars, "\n", x, "\n", stars, "\n", sep = "")
 }
