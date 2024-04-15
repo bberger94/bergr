@@ -2,8 +2,7 @@
 
 export("%>%")
 export(bigcat)
-export(coefplot_wide)
-export(ggiplot)
-export(ggplot)
+export(save_plots)
+export(save_tabs)
 export(theme_bergr)
 importFrom(magrittr,"%>%")

@@ -9,17 +9,12 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    broom,
-    dplyr,
-    forcats,
+    fs,
     ggplot2,
-    ggiplot,
     hrbrthemes,
+    knitr,
     magrittr,
-    purrr,
-    tidyr
-Remotes: grantmcdermott/ggiplot
+    purrr
 Suggests: 
-    fixest,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

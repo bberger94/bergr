@@ -6,11 +6,9 @@ theme_bergr <- function(){
     hrbrthemes::theme_ipsum() +
     ggplot2::theme(plot.title        = ggplot2::element_text(hjust = 0.5),
                    plot.subtitle     = ggplot2::element_text(hjust = 0.5),
-                   axis.title.y      = ggplot2::element_text(hjust = 0.5, size = 12),
-                   axis.title.x      = ggplot2::element_text(hjust = 0.5, size = 12),
+                   axis.title.x      = ggplot2::element_text(hjust = 0.5, size = ggplot2::rel(2)),
+                   axis.title.y      = ggplot2::element_text(hjust = 0.5, size = ggplot2::rel(2)),
                    strip.text        = ggplot2::element_text(hjust = 0.5),
-                   legend.position   = "bottom",
-                   legend.title      = ggplot2::element_blank(),
-                   legend.background = ggplot2::element_blank())
+                   legend.position   = "bottom")
 }
 
