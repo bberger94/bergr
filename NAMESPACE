@@ -2,6 +2,7 @@
 
 export("%>%")
 export(bigcat)
+export(palette_bergr)
 export(save_plots)
 export(save_tabs)
 export(theme_bergr)
