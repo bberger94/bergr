@@ -46,7 +46,7 @@ save_plots <- function(x, root, ext = "png",
     else{
       path <- paste0(root, "/", name)
       dir.create(path, showWarnings = F)
-      save_plots(el, path, 
+      save_plots(el, path, ext = ext,
                  remove_title = remove_title,
                  verbose = verbose,
                  ...)  
